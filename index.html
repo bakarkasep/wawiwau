@@ -1,0 +1,1947 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>buat kamu 🤍</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Quicksand:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --cream: #fdf6ee;
+        --blush: #f5d5d5;
+        --rose: #e8b4b8;
+        --dusty: #c9909a;
+        --mocha: #9c6b7a;
+        --warm: #f9ece4;
+        --text-dark: #4a3240;
+        --text-mid: #7a5568;
+        --gold: #d4a574;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Quicksand", sans-serif;
+        background: var(--cream);
+        color: var(--text-dark);
+        overflow-x: hidden;
+        cursor: default;
+      }
+
+      /* ── FLOATING HEARTS ── */
+      #hearts-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+      }
+
+      /* ── MUSIC CONTROL ── */
+      #music-btn {
+        position: fixed;
+        bottom: 28px;
+        right: 28px;
+        z-index: 1000;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        border: 1.5px solid var(--rose);
+        box-shadow: 0 4px 20px rgba(200, 130, 150, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+        font-size: 20px;
+      }
+      #music-btn:hover {
+        transform: scale(1.12);
+        box-shadow: 0 6px 28px rgba(200, 130, 150, 0.35);
+      }
+
+      /* ══════════════════════════════
+     PAGE 1 — LANDING
+  ══════════════════════════════ */
+      #page-landing {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Slideshow */
+      .slideshow {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+      .slide {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        transition: opacity 1.8s ease-in-out;
+      }
+      .slide.active {
+        opacity: 1;
+      }
+
+      /* placeholder gradient slides (ganti dengan foto asli) */
+      .slide-1 {
+        background: linear-gradient(
+          135deg,
+          #f9d4d4 0%,
+          #fce8dc 40%,
+          #f5c6c6 100%
+        );
+      }
+      .slide-2 {
+        background: linear-gradient(
+          135deg,
+          #fde8d8 0%,
+          #f9c8d0 50%,
+          #edd5e8 100%
+        );
+      }
+      .slide-3 {
+        background: linear-gradient(
+          135deg,
+          #e8d5f5 0%,
+          #f9d4d4 50%,
+          #fce8dc 100%
+        );
+      }
+      .slide-4 {
+        background: linear-gradient(
+          135deg,
+          #fcd5dc 0%,
+          #f9e4c8 50%,
+          #f5d5d5 100%
+        );
+      }
+
+      /* foto placeholder illustrations */
+      .slide::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='28' fill='none' stroke='rgba(200,150,160,0.12)' stroke-width='1'/%3E%3C/svg%3E")
+          repeat;
+        opacity: 0.6;
+      }
+
+      .slide-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(80, 40, 50, 0.18) 0%,
+          rgba(60, 30, 40, 0.38) 60%,
+          rgba(50, 25, 35, 0.55) 100%
+        );
+        z-index: 1;
+      }
+
+      .landing-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding: 0 24px;
+        animation: landingFadeIn 1.4s ease both;
+      }
+
+      @keyframes landingFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .landing-tag {
+        display: inline-block;
+        font-family: "Quicksand", sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: rgba(255, 210, 210, 0.85);
+        margin-bottom: 20px;
+      }
+
+      .landing-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(28px, 5vw, 58px);
+        font-weight: 400;
+        font-style: italic;
+        color: #fff;
+        line-height: 1.3;
+        text-shadow: 0 2px 30px rgba(0, 0, 0, 0.3);
+        margin-bottom: 14px;
+      }
+
+      .landing-sub {
+        font-family: "Quicksand", sans-serif;
+        font-size: clamp(14px, 2vw, 18px);
+        font-weight: 400;
+        color: rgba(255, 235, 235, 0.82);
+        margin-bottom: 48px;
+        letter-spacing: 0.5px;
+      }
+
+      .btn-liat {
+        display: inline-block;
+        padding: 16px 52px;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        border: 1.5px solid rgba(255, 255, 255, 0.55);
+        color: #fff;
+        font-family: "Quicksand", sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        border-radius: 60px;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+      }
+      .btn-liat::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.1);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s ease;
+      }
+      .btn-liat:hover {
+        border-color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      }
+      .btn-liat:hover::after {
+        transform: scaleX(1);
+      }
+
+      /* slide indicators */
+      .slide-dots {
+        position: absolute;
+        bottom: 32px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+        display: flex;
+        gap: 8px;
+      }
+      .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.4);
+        transition:
+          background 0.4s,
+          transform 0.4s;
+      }
+      .dot.active {
+        background: #fff;
+        transform: scale(1.3);
+      }
+
+      /* scroll hint */
+      .scroll-hint {
+        position: absolute;
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+        display: none;
+      }
+
+      /* ══════════════════════════════
+     TRANSITION OVERLAY
+  ══════════════════════════════ */
+      #transition-overlay {
+        position: fixed;
+        inset: 0;
+        background: var(--cream);
+        z-index: 5000;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.7s ease;
+      }
+      #transition-overlay.show {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      /* ══════════════════════════════
+     PAGE 2 — PESAN & GALERI
+  ══════════════════════════════ */
+      #page-pesan {
+        display: none;
+        background: var(--cream);
+        min-height: 100vh;
+      }
+      #page-pesan.visible {
+        display: block;
+      }
+
+      /* Hero section page 2 */
+      .p2-hero {
+        padding: 80px 24px 48px;
+        text-align: center;
+        position: relative;
+      }
+      .p2-hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 1px;
+        height: 60px;
+        background: linear-gradient(to bottom, transparent, var(--rose));
+      }
+
+      .p2-eyebrow {
+        font-size: 11px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--dusty);
+        margin-bottom: 16px;
+      }
+
+      .p2-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(30px, 5vw, 54px);
+        font-weight: 400;
+        font-style: italic;
+        color: var(--text-dark);
+        line-height: 1.25;
+        margin-bottom: 18px;
+      }
+
+      .p2-sub {
+        font-size: 15px;
+        color: var(--text-mid);
+        max-width: 480px;
+        margin: 0 auto;
+        line-height: 1.7;
+      }
+
+      .divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        margin: 40px auto;
+        max-width: 320px;
+      }
+      .divider-line {
+        flex: 1;
+        height: 1px;
+        background: var(--rose);
+      }
+      .divider-heart {
+        color: var(--dusty);
+        font-size: 14px;
+      }
+
+      /* ── POLAROID GALLERY ── */
+      .gallery-section {
+        padding: 0 16px 80px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 32px;
+        padding: 8px;
+      }
+
+      .polaroid {
+        background: #fff;
+        padding: 16px 16px 52px;
+        box-shadow:
+          0 4px 24px rgba(160, 100, 120, 0.12),
+          0 1px 4px rgba(0, 0, 0, 0.06);
+        border-radius: 2px;
+        transform: rotate(var(--rot, 0deg));
+        transition:
+          transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+          box-shadow 0.4s ease;
+        cursor: pointer;
+        opacity: 0;
+        animation: fadeUp 0.8s ease forwards;
+        animation-play-state: paused;
+        position: relative;
+      }
+      .polaroid.in-view {
+        animation-play-state: running;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: rotate(var(--rot, 0deg)) translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: rotate(var(--rot, 0deg)) translateY(0);
+        }
+      }
+
+      .polaroid:hover {
+        transform: rotate(0deg) scale(1.04) translateY(-6px) !important;
+        box-shadow:
+          0 16px 40px rgba(160, 100, 120, 0.22),
+          0 4px 12px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+      }
+
+      .polaroid-photo {
+        width: 100%;
+        aspect-ratio: 1;
+        overflow: hidden;
+        border-radius: 1px;
+        background: var(--warm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 48px;
+        position: relative;
+      }
+
+      /* placeholder photo bg */
+      .ph-1 {
+        background: linear-gradient(135deg, #fde8d8, #f5c6c6);
+      }
+      .ph-2 {
+        background: linear-gradient(135deg, #f9d4d4, #edd5e8);
+      }
+      .ph-3 {
+        background: linear-gradient(135deg, #fce8dc, #f9c8d0);
+      }
+      .ph-4 {
+        background: linear-gradient(135deg, #e8d5f5, #f9d4d4);
+      }
+      .ph-5 {
+        background: linear-gradient(135deg, #fcd5dc, #f9e4c8);
+      }
+      .ph-6 {
+        background: linear-gradient(135deg, #f5d5d5, #fde8d8);
+      }
+      .ph-7 {
+        background: linear-gradient(135deg, #edd5e8, #fcd5dc);
+      }
+
+      .polaroid-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .photo-placeholder-icon {
+        font-size: 42px;
+        opacity: 0.45;
+      }
+
+      .polaroid-caption {
+        margin-top: 14px;
+        font-family: "Quicksand", sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text-mid);
+        text-align: center;
+        line-height: 1.5;
+        padding: 0 4px;
+      }
+
+      .polaroid-num {
+        position: absolute;
+        bottom: 10px;
+        right: 14px;
+        font-size: 10px;
+        color: #ccc;
+        font-style: italic;
+      }
+
+      /* tape effect */
+      .tape {
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%) rotate(-2deg);
+        width: 52px;
+        height: 22px;
+        background: rgba(255, 220, 190, 0.6);
+        border-radius: 2px;
+        backdrop-filter: blur(2px);
+      }
+
+      /* ── SPECIAL MESSAGE CARD ── */
+      .message-card {
+        max-width: 700px;
+        margin: 0 auto 80px;
+        padding: 0 24px;
+        opacity: 0;
+        animation: fadeUp 0.9s ease 0.2s forwards;
+        animation-play-state: paused;
+      }
+      .message-card.in-view {
+        animation-play-state: running;
+      }
+
+      .msg-inner {
+        background: linear-gradient(135deg, #fff 0%, #fdf0f0 100%);
+        border: 1.5px solid var(--blush);
+        border-radius: 20px;
+        padding: 48px 40px;
+        text-align: center;
+        box-shadow: 0 8px 40px rgba(200, 140, 160, 0.12);
+        position: relative;
+        overflow: hidden;
+      }
+      .msg-inner::before {
+        content: "🤍";
+        position: absolute;
+        top: -10px;
+        right: 20px;
+        font-size: 80px;
+        opacity: 0.07;
+        line-height: 1;
+      }
+
+      .msg-quote {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(18px, 3vw, 26px);
+        font-style: italic;
+        color: var(--text-dark);
+        line-height: 1.6;
+        margin-bottom: 24px;
+      }
+
+      .msg-from {
+        font-size: 13px;
+        color: var(--dusty);
+        letter-spacing: 1px;
+      }
+
+      /* ── VIDEO SECTION ── */
+      .video-section {
+        padding: 0 24px 100px;
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+        opacity: 0;
+        animation: fadeUp 0.9s ease forwards;
+        animation-play-state: paused;
+      }
+      .video-section.in-view {
+        animation-play-state: running;
+      }
+
+      .section-label {
+        font-size: 11px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--dusty);
+        margin-bottom: 12px;
+      }
+
+      .section-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(22px, 3.5vw, 36px);
+        font-weight: 400;
+        font-style: italic;
+        color: var(--text-dark);
+        margin-bottom: 40px;
+        line-height: 1.35;
+      }
+
+      .video-frame {
+        position: relative;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow:
+          0 20px 60px rgba(160, 100, 120, 0.18),
+          0 4px 16px rgba(0, 0, 0, 0.08);
+        background: #f0e0e8;
+        aspect-ratio: 16/9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .video-frame video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .video-placeholder {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        color: var(--mocha);
+        opacity: 0.7;
+        padding: 40px;
+      }
+      .video-placeholder .vp-icon {
+        font-size: 56px;
+      }
+      .video-placeholder p {
+        font-size: 14px;
+        font-style: italic;
+        color: var(--text-mid);
+        max-width: 280px;
+        line-height: 1.6;
+      }
+
+      .video-caption {
+        margin-top: 24px;
+        font-family: "Playfair Display", serif;
+        font-size: 17px;
+        font-style: italic;
+        color: var(--text-mid);
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        padding: 48px 24px;
+        text-align: center;
+        border-top: 1px solid var(--blush);
+        background: linear-gradient(to top, var(--warm), var(--cream));
+      }
+
+      footer p {
+        font-family: "Playfair Display", serif;
+        font-size: 16px;
+        font-style: italic;
+        color: var(--mocha);
+      }
+
+      .footer-hearts {
+        margin-top: 12px;
+        font-size: 18px;
+        letter-spacing: 6px;
+        opacity: 0.6;
+      }
+
+      /* ══════════════════════════════
+     PAGE 3 — MARAH SAYANG
+  ══════════════════════════════ */
+      #page-marah {
+        display: none;
+        min-height: 100vh;
+        background: #1a0a0a;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+      }
+      #page-marah.visible {
+        display: block;
+      }
+
+      /* animated noise grain overlay */
+      #page-marah::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.5;
+      }
+
+      /* red glowing orbs bg */
+      .marah-orb {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(80px);
+        pointer-events: none;
+        z-index: 0;
+        animation: orbPulse 6s ease-in-out infinite alternate;
+      }
+      .marah-orb-1 {
+        width: 500px;
+        height: 500px;
+        background: rgba(180, 30, 30, 0.18);
+        top: -100px;
+        left: -100px;
+      }
+      .marah-orb-2 {
+        width: 400px;
+        height: 400px;
+        background: rgba(150, 20, 20, 0.15);
+        bottom: -80px;
+        right: -80px;
+        animation-delay: -3s;
+      }
+      .marah-orb-3 {
+        width: 300px;
+        height: 300px;
+        background: rgba(200, 80, 40, 0.1);
+        top: 40%;
+        left: 40%;
+        animation-delay: -1.5s;
+      }
+      @keyframes orbPulse {
+        from {
+          transform: scale(1);
+          opacity: 0.7;
+        }
+        to {
+          transform: scale(1.2);
+          opacity: 1;
+        }
+      }
+
+      /* ── HERO MARAH ── */
+      .marah-hero {
+        position: relative;
+        z-index: 2;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 60px 24px;
+      }
+
+      .marah-stamp {
+        display: inline-block;
+        border: 3px solid #c0392b;
+        color: #c0392b;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        padding: 6px 18px;
+        border-radius: 4px;
+        margin-bottom: 36px;
+        transform: rotate(-2deg);
+        box-shadow: 0 0 20px rgba(192, 57, 43, 0.3);
+        animation: stampPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        animation-play-state: paused;
+      }
+      .marah-stamp.in-view {
+        animation-play-state: running;
+      }
+      @keyframes stampPop {
+        from {
+          transform: rotate(-2deg) scale(0);
+          opacity: 0;
+        }
+        to {
+          transform: rotate(-2deg) scale(1);
+          opacity: 1;
+        }
+      }
+
+      .marah-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(32px, 6vw, 72px);
+        font-weight: 600;
+        line-height: 1.1;
+        color: #fff;
+        text-shadow: 0 0 40px rgba(220, 50, 50, 0.4);
+        margin-bottom: 20px;
+        opacity: 0;
+        animation: marahSlideIn 0.8s ease 0.3s both;
+        animation-play-state: paused;
+      }
+      .marah-title.in-view {
+        animation-play-state: running;
+      }
+      .marah-title .red {
+        color: #e74c3c;
+      }
+
+      @keyframes marahSlideIn {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .marah-sub {
+        font-size: clamp(14px, 2vw, 18px);
+        color: rgba(255, 200, 200, 0.7);
+        max-width: 500px;
+        line-height: 1.7;
+        margin-bottom: 52px;
+        opacity: 0;
+        animation: marahSlideIn 0.8s ease 0.5s both;
+        animation-play-state: paused;
+      }
+      .marah-sub.in-view {
+        animation-play-state: running;
+      }
+
+      /* scroll cta */
+      .scroll-cta {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        color: rgba(255, 150, 150, 0.6);
+        font-size: 12px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        animation: bounce 2s ease infinite;
+        opacity: 0;
+        animation:
+          marahSlideIn 0.8s ease 0.8s both,
+          bounce 2s ease 1.6s infinite;
+        animation-play-state: paused;
+      }
+      .scroll-cta.in-view {
+        animation-play-state: running;
+      }
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(8px);
+        }
+      }
+
+      /* ── ANCAMAN CARDS ── */
+      .ancaman-section {
+        position: relative;
+        z-index: 2;
+        padding: 0 20px 80px;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .ancaman-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .ancaman-card {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(200, 50, 50, 0.2);
+        border-left: 4px solid #c0392b;
+        border-radius: 12px;
+        padding: 28px 32px;
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+        opacity: 0;
+        animation: cardSlide 0.7s ease both;
+        animation-play-state: paused;
+        transition:
+          background 0.3s,
+          border-color 0.3s,
+          transform 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+      .ancaman-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          rgba(192, 57, 43, 0.06),
+          transparent
+        );
+        pointer-events: none;
+      }
+      .ancaman-card.in-view {
+        animation-play-state: running;
+      }
+      .ancaman-card:hover {
+        background: rgba(200, 50, 50, 0.08);
+        border-color: rgba(200, 50, 50, 0.4);
+        transform: translateX(4px);
+      }
+
+      @keyframes cardSlide {
+        from {
+          opacity: 0;
+          transform: translateX(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .ancaman-icon {
+        font-size: 32px;
+        flex-shrink: 0;
+        filter: drop-shadow(0 0 8px rgba(200, 80, 80, 0.4));
+        animation: wiggle 3s ease infinite;
+      }
+      @keyframes wiggle {
+        0%,
+        90%,
+        100% {
+          transform: rotate(0deg);
+        }
+        92% {
+          transform: rotate(-8deg);
+        }
+        96% {
+          transform: rotate(8deg);
+        }
+      }
+
+      .ancaman-text {
+        flex: 1;
+      }
+      .ancaman-label {
+        font-size: 10px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #e74c3c;
+        margin-bottom: 6px;
+        font-weight: 600;
+      }
+      .ancaman-main {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(17px, 2.5vw, 22px);
+        color: #fff;
+        line-height: 1.45;
+        margin-bottom: 6px;
+      }
+      .ancaman-detail {
+        font-size: 13px;
+        color: rgba(255, 200, 200, 0.55);
+        font-style: italic;
+        line-height: 1.5;
+      }
+
+      /* ── ULTIMATUM BOX ── */
+      .ultimatum-section {
+        position: relative;
+        z-index: 2;
+        padding: 0 24px 60px;
+        max-width: 700px;
+        margin: 0 auto;
+        text-align: center;
+        opacity: 0;
+        animation: marahSlideIn 0.9s ease both;
+        animation-play-state: paused;
+      }
+      .ultimatum-section.in-view {
+        animation-play-state: running;
+      }
+
+      .ultimatum-box {
+        border: 2px solid rgba(192, 57, 43, 0.6);
+        border-radius: 16px;
+        padding: 48px 36px;
+        background: rgba(180, 30, 30, 0.08);
+        position: relative;
+        box-shadow:
+          0 0 60px rgba(180, 30, 30, 0.12),
+          inset 0 0 40px rgba(180, 30, 30, 0.04);
+      }
+
+      .ultimatum-box::before {
+        content: "⚠";
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #1a0a0a;
+        padding: 0 12px;
+        font-size: 24px;
+      }
+
+      .ultimatum-label {
+        font-size: 10px;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        color: #e74c3c;
+        margin-bottom: 20px;
+      }
+
+      .ultimatum-text {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(20px, 3.5vw, 32px);
+        font-style: italic;
+        color: #fff;
+        line-height: 1.5;
+        margin-bottom: 28px;
+      }
+
+      .ultimatum-list {
+        list-style: none;
+        text-align: left;
+        margin-bottom: 32px;
+      }
+      .ultimatum-list li {
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(200, 50, 50, 0.12);
+        font-size: 14px;
+        color: rgba(255, 210, 210, 0.75);
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .ultimatum-list li::before {
+        content: "→";
+        color: #e74c3c;
+        font-weight: 700;
+      }
+
+      .shake-btn {
+        display: inline-block;
+        padding: 16px 48px;
+        background: #c0392b;
+        color: #fff;
+        font-family: "Quicksand", sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        border-radius: 60px;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 30px rgba(192, 57, 43, 0.4);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        position: relative;
+      }
+      .shake-btn:hover {
+        transform: scale(1.04);
+        box-shadow: 0 8px 40px rgba(192, 57, 43, 0.55);
+      }
+      .shake-btn:active {
+        transform: scale(0.97);
+      }
+      .shake-btn.shake-anim {
+        animation: shakeBtn 0.5s ease;
+      }
+      @keyframes shakeBtn {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        15% {
+          transform: translateX(-8px) rotate(-2deg);
+        }
+        30% {
+          transform: translateX(8px) rotate(2deg);
+        }
+        45% {
+          transform: translateX(-6px);
+        }
+        60% {
+          transform: translateX(6px);
+        }
+        75% {
+          transform: translateX(-3px);
+        }
+        90% {
+          transform: translateX(3px);
+        }
+      }
+
+      /* ── SOFTENING SECTION ── */
+      .soften-section {
+        position: relative;
+        z-index: 2;
+        padding: 0 24px 80px;
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+        opacity: 0;
+        animation: marahSlideIn 0.9s ease both;
+        animation-play-state: paused;
+      }
+      .soften-section.in-view {
+        animation-play-state: running;
+      }
+
+      .soften-divider {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 40px;
+      }
+      .soften-divider-line {
+        flex: 1;
+        height: 1px;
+        background: rgba(200, 100, 100, 0.2);
+      }
+      .soften-divider span {
+        font-size: 18px;
+      }
+
+      .soften-text {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(16px, 2.5vw, 22px);
+        font-style: italic;
+        color: rgba(255, 210, 210, 0.85);
+        line-height: 1.7;
+        margin-bottom: 12px;
+      }
+      .soften-from {
+        font-size: 13px;
+        color: rgba(255, 150, 150, 0.5);
+        letter-spacing: 1px;
+      }
+
+      /* ── MARAH FOOTER ── */
+      .marah-footer {
+        position: relative;
+        z-index: 2;
+        padding: 40px 24px;
+        text-align: center;
+        border-top: 1px solid rgba(200, 50, 50, 0.15);
+      }
+      .marah-footer p {
+        font-size: 14px;
+        color: rgba(255, 180, 180, 0.45);
+        font-style: italic;
+      }
+
+      /* floating embers */
+      @keyframes emberFloat {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 0.8;
+        }
+        100% {
+          transform: translateY(-100vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+      .ember {
+        position: fixed;
+        bottom: 0;
+        pointer-events: none;
+        z-index: 1;
+        font-size: 10px;
+        animation: emberFloat linear infinite;
+      }
+
+      /* ── TRANSITION TO PAGE 3 ── */
+      #transition-overlay-2 {
+        position: fixed;
+        inset: 0;
+        background: #1a0a0a;
+        z-index: 5000;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.7s ease;
+      }
+      #transition-overlay-2.show {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      /* ══════════════════════════════
+     SPARKLE
+  ══════════════════════════════ */
+      .sparkle-container {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 9998;
+        overflow: hidden;
+      }
+
+      .sparkle {
+        position: absolute;
+        pointer-events: none;
+        animation: sparkleFade 2s ease forwards;
+      }
+      @keyframes sparkleFade {
+        0% {
+          opacity: 1;
+          transform: scale(0) rotate(0deg);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1) rotate(180deg);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(0.5) rotate(360deg);
+        }
+      }
+
+      /* ══════════════════════════════
+     RESPONSIVE
+  ══════════════════════════════ */
+      @media (max-width: 600px) {
+        .gallery-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 18px;
+        }
+        .polaroid {
+          padding: 10px 10px 44px;
+        }
+        .msg-inner {
+          padding: 32px 24px;
+        }
+        #music-btn {
+          bottom: 20px;
+          right: 20px;
+          width: 46px;
+          height: 46px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sparkle container -->
+    <div class="sparkle-container" id="sparkle-container"></div>
+
+    <!-- Floating hearts canvas -->
+    <canvas id="hearts-canvas"></canvas>
+
+    <!-- Transition overlay -->
+    <div id="transition-overlay"></div>
+
+    <!-- Music control -->
+    <div id="music-btn" title="Play / Pause musik" onclick="toggleMusic()">
+      🎵
+    </div>
+    <audio id="bg-music" loop>
+      <!-- Ganti src dengan file lagu kamu -->
+      <source src="music.mp3" type="audio/mpeg" />
+      <!-- Fallback: lagu online jika ada -->
+    </audio>
+
+    <!-- ══════════════ PAGE 1 ══════════════ -->
+    <div id="page-landing">
+      <div class="slideshow" id="slideshow">
+        <!-- Ganti background-image di bawah dengan foto asli kamu -->
+        <div
+          class="slide slide-1 active"
+          style="background-image: url(&quot;foto1.jpg&quot;)"
+        ></div>
+        <div
+          class="slide slide-2"
+          style="background-image: url(&quot;foto3.jpg&quot;)"
+        ></div>
+        <div
+          class="slide slide-3"
+          style="background-image: url(&quot;foto6.jpg&quot;)"
+        ></div>
+        <div
+          class="slide slide-4"
+          style="background-image: url(&quot;foto9.jpg&quot;)"
+        ></div>
+      </div>
+      <div class="slide-overlay"></div>
+
+      <div class="landing-content">
+        <div class="landing-tag">✦ sebuah pesan kecil ✦</div>
+        <h1 class="landing-title">
+          buat anda yang susah banget<br />disuruh istirahat 🤍
+        </h1>
+        <p class="landing-sub">seperti biasa, ini adalah...</p>
+        <button class="btn-liat" onclick="goToPage2()">Liat Pesan</button>
+      </div>
+
+      <div class="slide-dots" id="slide-dots"></div>
+    </div>
+
+    <!-- ══════════════ PAGE 2 ══════════════ -->
+    <div id="page-pesan">
+      <!-- Hero -->
+      <div class="p2-hero">
+        <div class="p2-eyebrow">✦ khususan untuk anda ✦</div>
+        <h2 class="p2-title">pesan semangat<br />& reminder istirahat</h2>
+        <p class="p2-sub">
+          anda sudah bekerja dengan sangat keras. ini saatnya anda tau betapa
+          bangganya gweh terhadap anda 🌸
+        </p>
+        <div class="divider">
+          <div class="divider-line"></div>
+          <span class="divider-heart">♡</span>
+          <div class="divider-line"></div>
+        </div>
+      </div>
+
+      <!-- Galeri Polaroid -->
+      <div class="gallery-section">
+        <div class="gallery-grid" id="gallery-grid">
+          <!-- cards diisi oleh JS -->
+        </div>
+      </div>
+
+      <!-- Message card besar -->
+      <div class="message-card" id="msg-card">
+        <div class="msg-inner">
+          <p class="msg-quote">
+            "anda tidak harus sempurna buat jadi luar biasa. buat gweh, anda
+            selalu lebih dari cukup — dan saya selalu bangga dengan anda, setiap
+            harinya."
+          </p>
+          <p class="msg-from">
+            — dari orang yang selalu di sini buat kamu 🤍 "ngeri ngeri"
+          </p>
+        </div>
+      </div>
+
+      <!-- Video section -->
+      <div class="video-section" id="video-section">
+        <div class="section-label">✦ kenangan manis ✦</div>
+        <h3 class="section-title">
+          momen sederhana yang selalu<br />pengen aku ulang (bro lapar sudal
+          praktikum)
+        </h3>
+
+        <div class="video-frame">
+          <!-- Ganti src dengan file video kamu: video.mp4 -->
+          <video
+            id="main-video"
+            controls
+            poster="foto1.jpg"
+            style="display: none"
+          >
+            <source src="video.mp4" type="video/mp4" />
+          </video>
+          <div class="video-placeholder" id="video-placeholder">
+            <div class="vp-icon">🎬</div>
+            <p>
+              taruh video kalian di sini<br /><em
+                >(ganti "video.mp4" di kode)</em
+              >
+            </p>
+          </div>
+        </div>
+
+        <p class="video-caption">moment sederhana yang seru banget</p>
+      </div>
+
+      <!-- Footer -->
+      <footer>
+        <p>dibuat khusus buat kamu 🤍</p>
+        <div class="footer-hearts">♡ ♡ ♡</div>
+        <div style="margin-top: 32px">
+          <button
+            onclick="goToPage3()"
+            style="
+              padding: 14px 44px;
+              background: transparent;
+              border: 1.5px solid var(--rose);
+              color: var(--mocha);
+              font-family: &quot;Quicksand&quot;, sans-serif;
+              font-size: 13px;
+              font-weight: 600;
+              letter-spacing: 2px;
+              text-transform: uppercase;
+              border-radius: 60px;
+              cursor: pointer;
+              transition: all 0.3s;
+            "
+            onmouseover="this.style.background = 'var(--blush)'"
+            onmouseout="this.style.background = 'transparent'"
+          >
+            tapi tunggu... ada satu lagi 😤
+          </button>
+        </div>
+      </footer>
+    </div>
+    <!-- /page-pesan -->
+
+    <!-- Transition overlay page 3 -->
+    <div id="transition-overlay-2"></div>
+
+    <!-- ══════════════ PAGE 3 — MARAH SAYANG ══════════════ -->
+    <div id="page-marah">
+      <div class="marah-orb marah-orb-1"></div>
+      <div class="marah-orb marah-orb-2"></div>
+      <div class="marah-orb marah-orb-3"></div>
+
+      <div class="marah-hero">
+        <div class="marah-stamp in-view">⚠ peringatan keras ⚠</div>
+        <h2 class="marah-title in-view">
+          oke sekarang<br /><span class="red">gweh serius.</span>
+        </h2>
+        <p class="marah-sub in-view">
+          anda sudah baca semua pesan manisnya kan?<br />sekarang dengerin gweh
+          dengan telinga anda 😤
+        </p>
+        <div class="scroll-cta in-view">
+          <span>scroll ke bawah</span>
+          <span style="font-size: 20px">↓</span>
+        </div>
+      </div>
+
+      <div class="ancaman-section">
+        <div class="ancaman-grid" id="ancaman-grid"></div>
+      </div>
+
+      <div class="ultimatum-section" id="ultimatum-section">
+        <div class="ultimatum-box">
+          <div class="ultimatum-label">✦ ultimatum resmi ✦</div>
+          <p class="ultimatum-text">
+            "mulai sekarang, anda WAJIB istirahat.<br />ini bukan request. ini
+            perintah. (dari atasan)"
+          </p>
+          <ul class="ultimatum-list">
+            <li>
+              tidur sebelum jam 12 malam, TANPA negosiasi "maksimal banget jam
+              12 teh"
+            </li>
+            <li>makan 3x sehari, jangan skip sarapan lagi "real pisan"</li>
+            <li>
+              kalau capek, berhenti dulu — kerjaan bisa nunggu "sini gweh bantu"
+            </li>
+            <li>sesekali boleh rebahan sambil melakukan tidak apaaa</li>
+            <li>
+              kalau tidak nuruti, saya bakal ngomel lebih panjang dari ini
+              "wakakakakak"
+            </li>
+          </ul>
+          <button class="shake-btn" id="shake-btn" onclick="handleShakeBtn()">
+            iya iya aku ngerti 😭
+          </button>
+        </div>
+      </div>
+
+      <div class="soften-section" id="soften-section">
+        <div class="soften-divider">
+          <div class="soften-divider-line"></div>
+          <span>🤍</span>
+          <div class="soften-divider-line"></div>
+        </div>
+        <p class="soften-text">
+          "marahnya ini karena sayang.<br />saya tidak mau lihat anda capek
+          sendirian.<br />anda berhak istirahat, anda berhak dijaga —<br />dan
+          saya akan selalu di sini buat itu."
+        </p>
+        <p class="soften-from">— gweh, manusia soft spoken yg rajin menabung</p>
+      </div>
+
+      <div class="marah-footer">
+        <p>dibuat khusus buat kamu — termasuk bagian keselna</p>
+      </div>
+    </div>
+    <!-- /page-marah -->
+
+    <script>
+      /* ═══════════════════════════════════════
+   ANCAMAN DATA
+═══════════════════════════════════════ */
+      const ancaman = [
+        {
+          icon: "😤",
+          label: "peringatan #1",
+          main: "BEGADANG WAE JIRR?? coba aja, coba.",
+          detail:
+            "anda itu kurang tidur nona. dan gweh TIDAK akan diam. tidur teh bukan kemewahan, itu kebutuhan — kebutuhan kamu!",
+        },
+        {
+          icon: "🍽️",
+          label: "peringatan #2",
+          main: "makan yang banyak jirr (diet mah nanti lagi we).",
+          detail:
+            "perut anda itu penting. kalau anda tidak jaga diri sendiri, berarti pikiran gwhe makin banyak. makan je yg banyak!",
+        },
+        {
+          icon: "💻",
+          label: "peringatan #3",
+          main: '"bentar lagi" mehhhhhh.',
+          detail:
+            'saya tau kamu bilang "bentar lagi" tapi ujungnya terus ampe shubuh. laptop itu bisa diistirahatkan. anda juga bisa — wajib jir.',
+        },
+        {
+          icon: "😭",
+          label: "peringatan #4",
+          main: "jika anda tidak istirahat, saya tidak tenang.",
+          detail: "anda tau sendiri sepanik dan secerewet apa saya.",
+        },
+        {
+          icon: "🔒",
+          label: "peringatan #5",
+          main: "maksimal jam 12 malam siii (kecuali urgent).",
+          detail: "kalau ada tugas, saya siap bantu nona 😤",
+        },
+        {
+          icon: "👊",
+          label: "peringatan #6",
+          main: "gweh bakal maikin cerewet jir (turunan my mom).",
+          detail: "aslina, gweh bakal cerewet pisan mun anda na terus begini",
+        },
+      ];
+
+      /* ═══════════════════════════════════════
+   GO TO PAGE 3
+═══════════════════════════════════════ */
+      function goToPage3() {
+        const overlay = document.getElementById("transition-overlay-2");
+        overlay.classList.add("show");
+        setTimeout(() => {
+          document.getElementById("page-pesan").style.display = "none";
+          document.getElementById("page-marah").classList.add("visible");
+          window.scrollTo(0, 0);
+          setTimeout(() => overlay.classList.remove("show"), 100);
+          initAncaman();
+          initEmbers();
+          initMarahObserver();
+        }, 700);
+      }
+
+      /* ═══════════════════════════════════════
+   BUILD ANCAMAN CARDS
+═══════════════════════════════════════ */
+      function initAncaman() {
+        const grid = document.getElementById("ancaman-grid");
+        if (!grid || grid.children.length > 0) return;
+        ancaman.forEach((a, i) => {
+          const delay = (i * 0.13).toFixed(2) + "s";
+          const div = document.createElement("div");
+          div.className = "ancaman-card";
+          div.style.animationDelay = delay;
+          div.innerHTML = `
+      <div class="ancaman-icon">${a.icon}</div>
+      <div class="ancaman-text">
+        <div class="ancaman-label">${a.label}</div>
+        <div class="ancaman-main">${a.main}</div>
+        <div class="ancaman-detail">${a.detail}</div>
+      </div>
+    `;
+          grid.appendChild(div);
+        });
+      }
+
+      /* ═══════════════════════════════════════
+   SCROLL OBSERVER PAGE 3
+═══════════════════════════════════════ */
+      function initMarahObserver() {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("in-view");
+                observer.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.12 },
+        );
+
+        document
+          .querySelectorAll(
+            "#page-marah .ancaman-card, #ultimatum-section, #soften-section",
+          )
+          .forEach((el) => {
+            observer.observe(el);
+          });
+      }
+
+      /* ═══════════════════════════════════════
+   FLOATING EMBERS
+═══════════════════════════════════════ */
+      function initEmbers() {
+        const emojis = ["🔥", "✨", "💢", "😤", "⚡", "🌡️"];
+        for (let i = 0; i < 10; i++) {
+          const e = document.createElement("div");
+          e.className = "ember";
+          e.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+          const dur = 8 + Math.random() * 10;
+          e.style.cssText = `left:${Math.random() * 100}%;font-size:${8 + Math.random() * 10}px;animation-duration:${dur}s;animation-delay:-${Math.random() * dur}s;opacity:${0.1 + Math.random() * 0.2}`;
+          document.getElementById("page-marah").appendChild(e);
+        }
+      }
+
+      /* ═══════════════════════════════════════
+   SHAKE BUTTON
+═══════════════════════════════════════ */
+      const shakeResponses = [
+        "beneran nih?? janji ya?? 🤨",
+        "oke gweh percaya... tapi gweh pantau 👀",
+        "bagus. ayeuna na mah bobo. SEKARANG.",
+        "jangan cuma bilang, buktiin! 😤",
+        "iya iya katanya~ lihat nanti~",
+        "mantap, tidur dulu la minimal mah",
+      ];
+      let shakeCount = 0;
+      function handleShakeBtn() {
+        const btn = document.getElementById("shake-btn");
+        btn.classList.remove("shake-anim");
+        void btn.offsetWidth;
+        btn.classList.add("shake-anim");
+        btn.textContent =
+          shakeResponses[shakeCount % shakeResponses.length] + " 😤";
+        shakeCount++;
+        setTimeout(() => btn.classList.remove("shake-anim"), 500);
+      }
+
+      const cards = [
+        {
+          file: "foto1.jpg",
+          ph: "ph-1",
+          caption: "bro ini susah dibilangin,\ntidak mau istirahat 😅",
+          rot: "-2.5deg",
+        },
+        {
+          file: "foto2.jpg",
+          ph: "ph-2",
+          caption: "semangat!!!!!!!!!!!!! kamu pasti bisa!",
+          rot: "1.8deg",
+        },
+        {
+          file: "foto3.jpg",
+          ph: "ph-3",
+          caption: "jangan lupa makan bang\npenting banget itu!",
+          rot: "-1.2deg",
+        },
+        {
+          file: "foto4.jpg",
+          ph: "ph-4",
+          caption: "kalau capek\nistirahat dulu gapapa kok",
+          rot: "2.5deg",
+        },
+        {
+          file: "foto5.jpg",
+          ph: "ph-5",
+          caption: "gweh bangga sama kamu\nkeren banget jirrr",
+          rot: "-2deg",
+        },
+        {
+          file: "foto6.jpg",
+          ph: "ph-6",
+          caption: "jangan begadang terus ya,\ntidur yang cukup jir!",
+          rot: "1.5deg",
+        },
+        {
+          file: "foto7.jpg",
+          ph: "ph-7",
+          caption: "anda hebat banget,\nseriusan deh!",
+          rot: "-1.8deg",
+        },
+        {
+          file: "foto8.jpg",
+          ph: "ph-1",
+          caption: "kamu udah kerja keras banget 🤍\njangan lupa jaga diri",
+          rot: "2.2deg",
+        },
+        {
+          file: "foto9.jpg",
+          ph: "ph-2",
+          caption: "senyumnya itu lho 🥺\nbikin aku tenang banget",
+          rot: "-1.5deg",
+        },
+        {
+          file: "foto10.jpg",
+          ph: "ph-3",
+          caption: "apapun yang lagi anda hadapi,\nanda tidak sendirian kok",
+          rot: "1.2deg",
+        },
+        {
+          file: "foto11.jpg",
+          ph: "ph-4",
+          caption: "istirahat itu bukan malas,\nitu cara kamu jaga diri 🌸",
+          rot: "-2.8deg",
+        },
+        {
+          file: "foto12.jpg",
+          ph: "ph-5",
+          caption: "aku selalu di sini buat kamu\nno matter what 🤍",
+          rot: "2deg",
+        },
+      ];
+
+      /* ═══════════════════════════════════════
+   SLIDESHOW
+═══════════════════════════════════════ */
+      const slides = document.querySelectorAll(".slide");
+      const dotsContainer = document.getElementById("slide-dots");
+      let currentSlide = 0;
+
+      slides.forEach((_, i) => {
+        const dot = document.createElement("div");
+        dot.className = "dot" + (i === 0 ? " active" : "");
+        dotsContainer.appendChild(dot);
+      });
+
+      function nextSlide() {
+        const dots = document.querySelectorAll(".dot");
+        slides[currentSlide].classList.remove("active");
+        dots[currentSlide].classList.remove("active");
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add("active");
+        dots[currentSlide].classList.add("active");
+      }
+
+      setInterval(nextSlide, 4500);
+
+      /* ═══════════════════════════════════════
+   PAGE TRANSITION
+═══════════════════════════════════════ */
+      function goToPage2() {
+        const overlay = document.getElementById("transition-overlay");
+        overlay.classList.add("show");
+        setTimeout(() => {
+          document.getElementById("page-landing").style.display = "none";
+          document.getElementById("page-pesan").classList.add("visible");
+          window.scrollTo(0, 0);
+          setTimeout(() => overlay.classList.remove("show"), 100);
+          initGallery();
+          initScrollObserver();
+          initVideoCheck();
+        }, 700);
+      }
+
+      /* ═══════════════════════════════════════
+   GALLERY BUILD
+═══════════════════════════════════════ */
+      function initGallery() {
+        const grid = document.getElementById("gallery-grid");
+        if (grid.children.length > 0) return;
+        cards.forEach((c, i) => {
+          const delay = (i * 0.1).toFixed(2) + "s";
+          const div = document.createElement("div");
+          div.className = "polaroid";
+          div.style.cssText = `--rot:${c.rot}; animation-delay:${delay}`;
+          div.innerHTML = `
+      <div class="tape"></div>
+      <div class="polaroid-photo ${c.ph}" style="position:relative">
+        <img src="${c.file}" alt="foto"
+             style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:1px"
+             onerror="this.style.display='none'">
+      </div>
+      <div class="polaroid-caption">${c.caption.replace(/\n/g, "<br>")}</div>
+      <div class="polaroid-num">${String(i + 1).padStart(2, "0")}</div>
+    `;
+          div.addEventListener("mouseenter", () => spawnSparkles(div));
+          grid.appendChild(div);
+        });
+      }
+
+      /* ═══════════════════════════════════════
+   SCROLL OBSERVER
+═══════════════════════════════════════ */
+      function initScrollObserver() {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("in-view");
+                observer.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.15 },
+        );
+
+        document
+          .querySelectorAll(".polaroid, .message-card, .video-section")
+          .forEach((el) => {
+            observer.observe(el);
+          });
+      }
+
+      /* ═══════════════════════════════════════
+   VIDEO CHECK
+═══════════════════════════════════════ */
+      function initVideoCheck() {
+        const video = document.getElementById("main-video");
+        const placeholder = document.getElementById("video-placeholder");
+        video.addEventListener("loadeddata", () => {
+          placeholder.style.display = "none";
+          video.style.display = "block";
+        });
+        // trigger load check
+        if (video.readyState >= 2) {
+          placeholder.style.display = "none";
+          video.style.display = "block";
+        }
+      }
+
+      /* ═══════════════════════════════════════
+   MUSIC
+═══════════════════════════════════════ */
+      const audio = document.getElementById("bg-music");
+      audio.volume = 0.35;
+      let musicPlaying = false;
+
+      document.addEventListener(
+        "click",
+        function startOnInteraction() {
+          if (!musicPlaying) {
+            audio
+              .play()
+              .then(() => {
+                musicPlaying = true;
+                document.getElementById("music-btn").textContent = "🎵";
+              })
+              .catch(() => {});
+          }
+          document.removeEventListener("click", startOnInteraction);
+        },
+        { once: true },
+      );
+
+      function toggleMusic() {
+        const btn = document.getElementById("music-btn");
+        if (audio.paused) {
+          audio.play();
+          btn.textContent = "🎵";
+          musicPlaying = true;
+        } else {
+          audio.pause();
+          btn.textContent = "🔇";
+          musicPlaying = false;
+        }
+      }
+
+      /* ═══════════════════════════════════════
+   SPARKLES
+═══════════════════════════════════════ */
+      function spawnSparkles(el) {
+        const rect = el.getBoundingClientRect();
+        const container = document.getElementById("sparkle-container");
+        for (let i = 0; i < 5; i++) {
+          const s = document.createElement("div");
+          s.className = "sparkle";
+          const x = rect.left + Math.random() * rect.width;
+          const y = rect.top + window.scrollY + Math.random() * rect.height;
+          const shapes = ["✦", "✧", "⁎", "✸", "·"];
+          s.textContent = shapes[Math.floor(Math.random() * shapes.length)];
+          s.style.cssText = `left:${x}px;top:${y}px;font-size:${10 + Math.random() * 12}px;color:var(--dusty);position:absolute;`;
+          container.appendChild(s);
+          setTimeout(() => s.remove(), 2000);
+        }
+      }
+
+      /* ═══════════════════════════════════════
+   FLOATING HEARTS CANVAS
+═══════════════════════════════════════ */
+      (function () {
+        const canvas = document.getElementById("hearts-canvas");
+        const ctx = canvas.getContext("2d");
+        let W, H;
+        const hearts = [];
+        const COUNT = 12;
+
+        function resize() {
+          W = canvas.width = window.innerWidth;
+          H = canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener("resize", resize);
+
+        const COLORS = ["#e8b4b8", "#f5c6c6", "#d4a0aa", "#f9d4d4", "#c9909a"];
+
+        function Heart(x, y) {
+          this.x = x || Math.random() * W;
+          this.y = y || H + 20;
+          this.size = 8 + Math.random() * 10;
+          this.speed = 0.4 + Math.random() * 0.6;
+          this.drift = (Math.random() - 0.5) * 0.5;
+          this.opacity = 0.25 + Math.random() * 0.3;
+          this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+          this.phase = Math.random() * Math.PI * 2;
+        }
+
+        Heart.prototype.update = function () {
+          this.y -= this.speed;
+          this.x += this.drift + Math.sin(this.phase + this.y * 0.02) * 0.3;
+          this.phase += 0.02;
+          if (this.y < -30) {
+            this.y = H + 20;
+            this.x = Math.random() * W;
+          }
+        };
+
+        Heart.prototype.draw = function () {
+          ctx.save();
+          ctx.globalAlpha = this.opacity;
+          ctx.fillStyle = this.color;
+          ctx.translate(this.x, this.y);
+          const s = this.size * 0.05;
+          ctx.scale(s, s);
+          ctx.beginPath();
+          ctx.moveTo(0, -5);
+          ctx.bezierCurveTo(5, -15, 20, -5, 0, 10);
+          ctx.bezierCurveTo(-20, -5, -5, -15, 0, -5);
+          ctx.fill();
+          ctx.restore();
+        };
+
+        for (let i = 0; i < COUNT; i++) {
+          const h = new Heart(Math.random() * W, Math.random() * H);
+          h.y = Math.random() * H;
+          hearts.push(h);
+        }
+
+        function loop() {
+          ctx.clearRect(0, 0, W, H);
+          hearts.forEach((h) => {
+            h.update();
+            h.draw();
+          });
+          requestAnimationFrame(loop);
+        }
+        loop();
+      })();
+
+      /* ═══════════════════════════════════════
+   SPARKLE ON CLICK
+═══════════════════════════════════════ */
+      document.addEventListener("click", function (e) {
+        const container = document.getElementById("sparkle-container");
+        for (let i = 0; i < 4; i++) {
+          const s = document.createElement("div");
+          s.className = "sparkle";
+          const shapes = ["♡", "✦", "✧", "·"];
+          s.textContent = shapes[Math.floor(Math.random() * shapes.length)];
+          s.style.cssText = `left:${e.clientX + (Math.random() - 0.5) * 30}px;top:${e.clientY + window.scrollY + (Math.random() - 0.5) * 30}px;font-size:${8 + Math.random() * 10}px;color:var(--rose);position:absolute;`;
+          container.appendChild(s);
+          setTimeout(() => s.remove(), 2000);
+        }
+      });
+    </script>
+  </body>
+</html>
